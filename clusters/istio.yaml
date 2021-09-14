@@ -1,16 +1,19 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-kind: Kustomization
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
 metadata:
   name: istio-operator
   namespace: istio-system
 spec:
   interval: 5m0s
-  path: ./manifests/charts/istio-operator
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: istio-repo
-  validation: client
+  chart:
+    spec:
+      chart: istio-operator
+      sourceRef:
+        kind: GitRepository
+        name: istio-repo
+        namespace: istio-system
+        path: manifests/charts/istio-operator
+      interval: 1m
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
