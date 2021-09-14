@@ -1,0 +1,24 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: istio-operator
+  namespace: istio-system
+spec:
+  interval: 5m0s
+  path: ./manifests/charts/istio-operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: istio-repo
+  validation: client
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: istio-repo
+  namespace: istio-system
+spec:
+  interval: 30s
+  ref:
+    branch: master
+  url: https://github.com/istio/istio.git
