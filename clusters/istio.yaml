@@ -7,7 +7,7 @@ spec:
   interval: 5m0s
   chart:
     spec:
-      chart: manifests/charts/istio-operator
+      chart: /manifests/charts/istio-operator
       sourceRef:
         kind: GitRepository
         name: istio-repo
@@ -24,5 +24,3 @@ spec:
   ref:
     branch: master
   url: https://github.com/istio/istio.git
-    ignore: |
-    # exclude all
