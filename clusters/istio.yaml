@@ -24,4 +24,6 @@ spec:
   ref:
     branch: master
   url: https://github.com/istio/istio.git
-  path: manifests/charts/istio-operator
+    ignore: |
+    # exclude all
+    !/manifests/charts/istio-operator
