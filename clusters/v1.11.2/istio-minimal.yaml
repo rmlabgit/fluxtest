@@ -1,0 +1,8 @@
+# filename: control-plane.yaml
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: justice-istio-control-plane # REQUIRED
+  namespace: istio-system
+spec:
+  profile: minimal
