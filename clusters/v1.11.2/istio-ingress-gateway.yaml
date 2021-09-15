@@ -1,0 +1,12 @@
+# filename: gateways.yaml
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: justice-ingressgateways # REQUIRED
+  namespace: istio-system
+spec:
+  profile: empty # REQUIRED
+  components:
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
