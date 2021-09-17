@@ -6,14 +6,9 @@ metadata:
 spec:
   profile: empty # REQUIRED
   components:
-    telemetry:
-      enabled: true
     ingressGateways:
     - enabled: true
       name: istio-ingressgateway-a
-      k8s:
-        hpaSpec:
-          minReplicas: 1
   addonComponents:
     prometheus:
       enabled: false
@@ -23,28 +18,4 @@ spec:
     tracing:
       enabled: true
       namespace: monitoring
-  values:
-    global:
-      prometheusNamespace: monitoring
-      proxy:
-        resources:
-          limits:
-            cpu: 300m
-            memory: 128Mi
-          requests:
-            cpu: 300m
-            memory: 128Mi
-      proxy_init:
-        image: proxyv2
-        resources:
-          limits:
-            cpu: 100m
-            memory: 50Mi
-          requests:
-            cpu: 100m
-            memory: 50Mi
-    pilot:
-      autoscaleMin: 1
-      replicaCount: 1
-    kiali:
-      prometheusAddr: http://prometheus-k8s.monitoring:443
+ 
