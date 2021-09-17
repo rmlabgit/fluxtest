@@ -10,7 +10,7 @@ spec:
       enabled: true
     ingressGateways:
     - enabled: true
-      name: istio-ingressgateway
+      name: istio-ingressgateway-a
       k8s:
         hpaSpec:
           minReplicas: 1
