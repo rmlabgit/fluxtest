@@ -1,0 +1,48 @@
+---
+# Depends on flux
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: istio-system
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: flux
+  interval: 10m0s
+  path: ./clusters/manifests/platform/istio/v1.11.2/operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: iac-repo
+  validation: client
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-variables
+---
+# Depends on flux
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: istio-profile
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: istio-system
+  interval: 10m0s
+  path: ./clusters/manifests/platform/istio/v1.11.2/profile
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: iac-repo
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: istio-operator
+      namespace: istio-system
+  validation: client
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: cluster-variables
+

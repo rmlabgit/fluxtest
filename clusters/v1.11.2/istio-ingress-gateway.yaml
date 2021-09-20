@@ -10,8 +10,6 @@ spec:
     - enabled: true
       name: istio-ingressgateway-a
   addonComponents:
-    prometheus:
-      enabled: false
     kiali:
       enabled: true
       namespace: monitoring

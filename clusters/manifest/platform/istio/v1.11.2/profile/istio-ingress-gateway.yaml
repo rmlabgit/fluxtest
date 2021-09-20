@@ -1,0 +1,11 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istio-ingressgateways # REQUIRED
+  namespace: istio-system
+spec:
+  profile: empty # REQUIRED
+  components:
+    ingressGateways:
+      - name: justice-istio-ingressgateway
+        enabled: true
